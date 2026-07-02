@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hair by Marissa — Salon Studio in Manteca, CA</title>
+<meta name="description" content="A private hair studio in Manteca, California. Cuts, color, balayage, and occasion styling in a warm, one-on-one setting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Karla:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Ms+Madi&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f8f1e8;
+  --linen:#f1e6d8;
+  --blush:#ecd3d2;
+  --rose:#c07f8b;
+  --rose-deep:#a2606e;
+  --maroon:#571e28;
+  --maroon-deep:#3f151d;
+  --wood:#8a6a52;
+  --ink:#372a2c;
+  --ink-soft:#6d5a5c;
+  --hairline:rgba(87,30,40,.18);
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Karla",sans-serif;
+  --script:"Ms Madi",cursive;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--rose);color:#fff}
+
+/* grain overlay */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+.cover{width:100%;height:100%;object-fit:cover}
+
+/* ---------- reveal on scroll ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--cream) 88%,transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--hairline);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand svg{width:42px;height:42px;flex:none}
+.brand-name{font-family:var(--serif);font-size:19px;letter-spacing:.02em;color:var(--maroon)}
+.brand-name small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);margin-top:1px}
+.nav-links{display:flex;gap:34px;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.nav-links a{color:var(--ink-soft);transition:color .25s}
+.nav-links a:hover{color:var(--maroon)}
+.btn{
+  display:inline-block;font-family:var(--sans);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--maroon);color:var(--cream);padding:14px 28px;border-radius:999px;
+  transition:background .3s,transform .3s;
+}
+.btn:hover{background:var(--maroon-deep);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--maroon);box-shadow:inset 0 0 0 1px var(--maroon)}
+.btn.ghost:hover{background:var(--maroon);color:var(--cream)}
+.nav .btn{padding:11px 22px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:clamp(56px,9vh,110px) 0 clamp(70px,10vh,130px)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,6vw,80px);align-items:center}
+.eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:26px}
+.hero h1{font-size:clamp(44px,6.4vw,84px);color:var(--maroon);font-weight:300}
+.hero .script{
+  font-family:var(--script);font-size:clamp(38px,4.6vw,62px);color:var(--rose);
+  display:block;transform:rotate(-2deg);margin:6px 0 2px 4px;line-height:1;
+}
+.hero p.lede{max-width:44ch;font-size:17px;color:var(--ink-soft);margin:28px 0 36px;font-weight:300}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+
+/* staggered load */
+.hero .ld{opacity:0;transform:translateY(24px);animation:rise .95s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .ld:nth-child(1){animation-delay:.05s}
+.hero .ld:nth-child(2){animation-delay:.15s}
+.hero .ld:nth-child(3){animation-delay:.28s}
+.hero .ld:nth-child(4){animation-delay:.4s}
+.hero-photo-wrap{opacity:0;animation:rise 1.1s .3s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+
+.hero-photo-wrap{position:relative}
+.hero-frame{
+  position:relative;border-radius:260px 260px 18px 18px;overflow:hidden;aspect-ratio:4/5.4;
+  box-shadow:0 30px 60px -30px rgba(63,21,29,.4);
+}
+.hero-frame::after{content:"";position:absolute;inset:12px;border:1px solid rgba(248,241,232,.55);border-radius:248px 248px 10px 10px;pointer-events:none}
+
+/* ---------- divider strip ---------- */
+.strip{
+  border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
+  padding:22px 0;overflow:hidden;background:var(--linen);
+}
+.strip-track{display:flex;gap:56px;width:max-content;animation:scroll 36s linear infinite}
+.strip-track span{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--maroon);letter-spacing:.06em;white-space:nowrap;display:flex;align-items:center;gap:56px}
+.strip-track span::after{content:"·";font-style:normal;color:var(--rose)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- section scaffolding ---------- */
+section{padding:clamp(72px,11vh,130px) 0}
+.sec-head{margin-bottom:clamp(40px,6vh,64px)}
+.sec-head .eyebrow{margin-bottom:16px}
+.sec-head h2{font-size:clamp(32px,4.4vw,54px);color:var(--maroon);font-weight:300;max-width:18ch}
+.sec-head h2 em{font-style:italic}
+
+/* ---------- about (wood panel feel) ---------- */
+.about{
+  background:
+    repeating-linear-gradient(90deg,rgba(138,106,82,.05) 0 2px,transparent 2px 96px),
+    linear-gradient(var(--linen),var(--linen));
+  border-top:1px solid var(--hairline);
+}
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,6vw,90px);align-items:center}
+.about-photo{position:relative}
+.about-frame{border-radius:16px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 24px 50px -28px rgba(63,21,29,.35);transform:rotate(-1.2deg)}
+.about-photo .polaroid{
+  position:absolute;right:-26px;bottom:-40px;width:38%;aspect-ratio:1;
+  border:10px solid #fff;border-bottom-width:34px;border-radius:4px;overflow:hidden;
+  box-shadow:0 18px 36px -16px rgba(63,21,29,.4);transform:rotate(4deg);
+}
+.about-copy h2{font-size:clamp(30px,3.8vw,46px);color:var(--maroon);font-weight:300;margin-bottom:24px}
+.about-copy p{color:var(--ink-soft);font-weight:300;max-width:52ch;margin-bottom:18px}
+.about-sig{font-family:var(--script);font-size:44px;color:var(--rose-deep);margin-top:26px;transform:rotate(-2deg);display:inline-block}
+.about-facts{display:flex;gap:40px;margin-top:34px;padding-top:28px;border-top:1px solid var(--hairline)}
+.fact strong{display:block;font-family:var(--serif);font-size:30px;color:var(--maroon);font-weight:400}
+.fact span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* ---------- gallery ---------- */
+.gallery{background:var(--maroon);color:var(--cream);position:relative;overflow:hidden}
+.gallery .eyebrow{color:var(--rose)}
+.gallery h2{color:var(--cream)}
+.g-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.g-item{border-radius:12px;overflow:hidden}
+.g-item:nth-child(1){grid-column:span 5;aspect-ratio:4/5}
+.g-item:nth-child(2){grid-column:span 4;aspect-ratio:1;align-self:end}
+.g-item:nth-child(3){grid-column:span 3;aspect-ratio:3/4;align-self:center}
+.g-item:nth-child(4){grid-column:span 3;aspect-ratio:1;align-self:start}
+.g-item:nth-child(5){grid-column:span 5;aspect-ratio:5/4}
+.g-item:nth-child(6){grid-column:span 4;aspect-ratio:4/5;margin-top:-40px}
+.g-note{margin-top:34px;text-align:center;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--blush)}
+.g-note a{border-bottom:1px solid var(--rose);padding-bottom:1px;transition:color .25s}
+.g-note a:hover{color:var(--rose)}
+
+/* ---------- testimonials ---------- */
+.quotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3.5vw,44px)}
+.quote{
+  background:#fff;border:1px solid var(--hairline);border-radius:16px;padding:34px 30px 28px;position:relative;
+  box-shadow:0 18px 40px -30px rgba(63,21,29,.25);
+}
+.quote::before{
+  content:"“";position:absolute;top:-4px;left:22px;font-family:var(--serif);font-size:76px;color:var(--rose);
+  line-height:1;opacity:.55;
+}
+.quote p{font-family:var(--serif);font-size:17px;font-weight:300;color:var(--ink);margin:16px 0 20px;line-height:1.55}
+.quote cite{font-style:normal;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--rose-deep)}
+.stars{color:var(--rose);letter-spacing:4px;font-size:13px}
+
+/* ---------- pricing ---------- */
+.pricing{
+  background:
+    repeating-linear-gradient(90deg,rgba(138,106,82,.05) 0 2px,transparent 2px 96px),
+    linear-gradient(var(--linen),var(--linen));
+  border-top:1px solid var(--hairline);
+}
+.pricing .sec-head{text-align:center;margin-left:auto;margin-right:auto}
+.pricing .sec-head h2{margin:0 auto}
+.pricing .sec-head p{margin:18px auto 0;max-width:52ch;color:var(--ink-soft);font-weight:300}
+.p-cat{
+  display:grid;grid-template-columns:minmax(220px,.85fr) 2.15fr;gap:clamp(28px,4vw,64px);
+  padding:clamp(36px,5vh,56px) 0;border-top:1px solid var(--hairline);align-items:start;
+}
+.p-cat:last-of-type{padding-bottom:0}
+.p-cat-label{position:sticky;top:100px}
+.p-cat-label .num{
+  font-family:var(--serif);font-style:italic;font-size:15px;color:var(--rose-deep);
+  display:block;margin-bottom:10px;
+}
+.p-cat-label h3{font-size:clamp(26px,3vw,36px);color:var(--maroon);font-weight:300;margin-bottom:12px}
+.p-cat-label p{font-size:14px;color:var(--ink-soft);font-weight:300;max-width:26ch}
+.p-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.p-card{
+  background:#fff;border:1px solid var(--hairline);border-radius:14px;padding:26px 26px 22px;
+  display:flex;flex-direction:column;gap:8px;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s;
+}
+.p-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -26px rgba(63,21,29,.35)}
+.p-card h4{font-family:var(--serif);font-size:19px;font-weight:400;color:var(--ink);line-height:1.25}
+.p-card p{font-size:13.5px;color:var(--ink-soft);font-weight:300;flex:1}
+.p-card .price{
+  margin-top:14px;padding-top:14px;border-top:1px solid var(--hairline);
+  font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--maroon);font-weight:600;
+}
+.p-card .price em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;font-size:15px}
+.p-card.featured{background:var(--maroon);border-color:var(--maroon)}
+.p-card.featured h4{color:var(--cream)}
+.p-card.featured p{color:var(--blush)}
+.p-card.featured .price{color:var(--blush);border-top-color:rgba(236,211,210,.3)}
+.p-card.featured .tag{
+  align-self:flex-start;font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--maroon-deep);background:var(--rose);padding:5px 12px;border-radius:999px;margin-bottom:6px;font-weight:600;
+}
+.p-foot{text-align:center;margin-top:clamp(40px,6vh,60px);padding-top:clamp(32px,4vh,44px);border-top:1px solid var(--hairline)}
+.p-foot p{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--ink-soft);margin-bottom:24px}
+
+/* ---------- visit / book (brick feel) ---------- */
+.visit{
+  background:
+    linear-gradient(rgba(63,21,29,.94),rgba(63,21,29,.94)),
+    repeating-linear-gradient(0deg,rgba(248,241,232,.14) 0 1px,transparent 1px 44px),
+    repeating-linear-gradient(90deg,rgba(248,241,232,.1) 0 1px,transparent 1px 110px),
+    var(--maroon-deep);
+  color:var(--cream);
+}
+.visit-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,6vw,90px);align-items:center}
+.visit .eyebrow{color:var(--rose)}
+.visit h2{color:var(--cream);font-size:clamp(32px,4.2vw,52px);font-weight:300;margin-bottom:18px}
+.visit h2 em{font-style:italic;color:var(--blush)}
+.visit p.sub{color:var(--blush);font-weight:300;max-width:46ch;margin-bottom:34px}
+.visit-details{display:grid;grid-template-columns:1fr 1fr;gap:26px 36px;margin-bottom:40px}
+.vd h4{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--rose);margin-bottom:8px;font-weight:600}
+.vd p{font-family:var(--serif);font-size:17px;color:var(--cream);line-height:1.5}
+.vd p small{display:block;font-family:var(--sans);font-size:13px;color:var(--blush);font-weight:300;margin-top:3px}
+.visit .btn{background:var(--rose);color:var(--maroon-deep);font-weight:600}
+.visit .btn:hover{background:var(--blush)}
+.map-frame{border-radius:16px;overflow:hidden;aspect-ratio:1/1;box-shadow:0 26px 60px -30px rgba(0,0,0,.5)}
+
+/* ---------- footer ---------- */
+footer{padding:52px 0 40px;border-top:1px solid var(--hairline)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.foot-brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);color:var(--maroon)}
+.foot-brand svg{width:32px;height:32px}
+.foot nav{display:flex;gap:26px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.foot nav a:hover{color:var(--maroon)}
+.foot .fine{font-size:12px;color:var(--ink-soft)}
+
+/* ---------- responsive ---------- */
+@media(max-width:960px){
+  .hero-grid,.about-grid,.visit-grid{grid-template-columns:1fr}
+  .hero-photo-wrap{max-width:440px;margin:20px auto 0}
+  .quotes-grid{grid-template-columns:1fr;max-width:560px}
+  .g-grid{grid-template-columns:repeat(2,1fr)}
+  .g-item{grid-column:span 1!important;margin-top:0!important;aspect-ratio:4/5!important}
+  .nav-links{display:none}
+  .about-photo{max-width:420px}
+  .map-frame{aspect-ratio:16/10}
+  .p-cat{grid-template-columns:1fr;gap:24px}
+  .p-cat-label{position:static}
+  .p-cat-label p{max-width:52ch}
+}
+@media(max-width:640px){
+  .g-grid{grid-template-columns:1fr}
+  .visit-details{grid-template-columns:1fr}
+  .about-photo .polaroid{right:0}
+  .p-cards{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .rv,.hero .ld,.hero-photo-wrap{opacity:1!important;transform:none!important;animation:none!important}
+  .strip-track{animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ monogram logo placeholder ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="monogram">
+      <circle cx="32" cy="32" r="26" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <text x="32" y="40" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-size="24" font-style="italic" fill="currentColor" stroke="none">M</text>
+    </g>
+  </defs>
+</svg>
+
+<!-- ============ header ============ -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Hair by Marissa — home">
+      <svg viewBox="0 0 64 64" style="color:var(--maroon)"><use href="#monogram"/></svg>
+      <span class="brand-name">Hair by Marissa<small>Manteca &middot; California</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="btn" href="#visit">Book Now</a>
+  </div>
+</header>
+
+<!-- ============ hero ============ -->
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow ld">A private hair studio in Manteca</p>
+      <h1 class="ld">Beautiful hair,<span class="script">grown with care</span></h1>
+      <p class="lede ld">One chair, one guest at a time. Cuts, color, and occasion styling in a warm little studio of wood and brick — where you're never rushed and always heard.</p>
+      <div class="hero-actions ld">
+        <a class="btn" href="#visit">Book an Appointment</a>
+        <a class="btn ghost" href="#pricing">View Services</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="hero-frame">
+        <img class="cover" src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=900&auto=format&fit=crop" alt="Stylist washing a smiling client's hair at the shampoo bowl">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ marquee strip ============ -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-track">
+    <span>Balayage</span><span>Dimensional Color</span><span>Precision Cuts</span><span>Bridal &amp; Occasion</span><span>Vivids</span><span>Treatments</span>
+    <span>Balayage</span><span>Dimensional Color</span><span>Precision Cuts</span><span>Bridal &amp; Occasion</span><span>Vivids</span><span>Treatments</span>
+  </div>
+</div>
+
+<!-- ============ about ============ -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo rv">
+      <div class="about-frame">
+        <img class="cover" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=900&auto=format&fit=crop" alt="Portrait of Marissa outdoors in warm evening light">
+      </div>
+      <div class="polaroid">
+        <img class="cover" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=500&auto=format&fit=crop" alt="Dusty rose styling chairs inside the studio">
+      </div>
+    </div>
+    <div class="about-copy rv">
+      <p class="eyebrow">Meet your stylist</p>
+      <h2>The studio feels like home, <em>because it is one.</em></h2>
+      <p>Tucked away in Manteca, the studio is all warm wood paneling, worn brick, and afternoon light — a far cry from a busy salon floor. When you sit in the chair, you're the only appointment that matters.</p>
+      <p>Marissa has spent over a decade behind the chair, with a soft spot for lived-in color, romantic waves, and haircuts that grow out as beautifully as they start. Every visit begins with a real conversation and ends with hair you can actually recreate at home.</p>
+      <span class="about-sig">Marissa</span>
+      <div class="about-facts">
+        <div class="fact"><strong>10+</strong><span>Years styling</span></div>
+        <div class="fact"><strong>1:1</strong><span>Private appointments</span></div>
+        <div class="fact"><strong>&hearts;</strong><span>Manteca born &amp; raised</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ gallery ============ -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Recent work</p>
+      <h2>Hair worth <em>turning around for.</em></h2>
+    </div>
+    <div class="g-grid">
+      <div class="g-item rv"><img class="cover" loading="lazy" src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?q=80&w=700&auto=format&fit=crop" alt="Long lavender waves, fashion color result"></div>
+      <div class="g-item rv"><img class="cover" loading="lazy" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=700&auto=format&fit=crop" alt="Natural curls against a soft pink backdrop"></div>
+      <div class="g-item rv"><img class="cover" loading="lazy" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=700&auto=format&fit=crop" alt="Soft blonde waves, cut and style"></div>
+      <div class="g-item rv"><img class="cover" loading="lazy" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=700&auto=format&fit=crop" alt="Sunlit corner of the salon studio"></div>
+      <div class="g-item rv"><img class="cover" loading="lazy" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=700&auto=format&fit=crop" alt="Round-brush blowout in progress"></div>
+      <div class="g-item rv"><img class="cover" loading="lazy" src="https://images.unsplash.com/photo-1523263685509-57c1d050d19b?q=80&w=700&auto=format&fit=crop" alt="Bridal styling with flowers and soft makeup"></div>
+    </div>
+    <p class="g-note rv">Follow along on <a href="#" aria-label="Instagram (link placeholder)">Instagram</a> for the latest before &amp; afters.</p>
+  </div>
+</section>
+
+<!-- ============ testimonials ============ -->
+<section class="testimonials">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Kind words</p>
+      <h2>From the <em>chair.</em></h2>
+    </div>
+    <div class="quotes-grid">
+      <blockquote class="quote rv">
+        <div class="stars" aria-label="5 stars">★★★★★</div>
+        <p>The studio is the coziest little space — all wood and brick and good conversation. My balayage has never looked this natural.</p>
+        <cite>Placeholder review &middot; Manteca</cite>
+      </blockquote>
+      <blockquote class="quote rv">
+        <div class="stars" aria-label="5 stars">★★★★★</div>
+        <p>She actually listens. First stylist in years who cut my hair the way I asked — and it still looked good three months later.</p>
+        <cite>Placeholder review &middot; Ripon</cite>
+      </blockquote>
+      <blockquote class="quote rv">
+        <div class="stars" aria-label="5 stars">★★★★★</div>
+        <p>Did my hair for my daughter's wedding and I cried when I saw it. Worth every penny and then some.</p>
+        <cite>Placeholder review &middot; Lathrop</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============ pricing ============ -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Services &amp; pricing</p>
+      <h2>Taken care of, <em>root to end.</em></h2>
+      <p>Every appointment starts with a consultation, and every price below is a starting point — confirmed together before any color touches your hair.</p>
+    </div>
+
+    <div class="p-cat rv">
+      <div class="p-cat-label">
+        <span class="num">No. 01</span>
+        <h3>Cut &amp; Style</h3>
+        <p>Precision cuts and finishes designed to grow out as beautifully as they start.</p>
+      </div>
+      <div class="p-cards">
+        <div class="p-card">
+          <h4>Women's Cut &amp; Style</h4>
+          <p>Consultation, shampoo, precision cut, and a styled finish you can recreate at home.</p>
+          <div class="price">From <em>$65</em></div>
+        </div>
+        <div class="p-card">
+          <h4>Men's &amp; Short Cut</h4>
+          <p>Clipper or shear work with a styled-dry finish.</p>
+          <div class="price"><em>$35</em></div>
+        </div>
+        <div class="p-card">
+          <h4>Blowout &amp; Style</h4>
+          <p>Wash, blow-dry, and a hot-tool finish for date nights and photo days.</p>
+          <div class="price"><em>$55</em></div>
+        </div>
+        <div class="p-card">
+          <h4>Occasion &amp; Bridal</h4>
+          <p>Updos, soft waves, and styling for the big day — trial runs available.</p>
+          <div class="price">From <em>$85</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-cat rv">
+      <div class="p-cat-label">
+        <span class="num">No. 02</span>
+        <h3>Color</h3>
+        <p>Lived-in, dimensional color that fades gracefully between visits.</p>
+      </div>
+      <div class="p-cards">
+        <div class="p-card featured">
+          <span class="tag">Most requested</span>
+          <h4>Balayage</h4>
+          <p>Hand-painted, sun-kissed dimension with a seamless grow-out. Includes gloss and styled finish.</p>
+          <div class="price">From <em>$185</em></div>
+        </div>
+        <div class="p-card">
+          <h4>Partial Highlight</h4>
+          <p>Brightness where it counts — face-frame and crown.</p>
+          <div class="price">From <em>$130</em></div>
+        </div>
+        <div class="p-card">
+          <h4>All-Over Color</h4>
+          <p>Rich single-process color, root to end.</p>
+          <div class="price">From <em>$120</em></div>
+        </div>
+        <div class="p-card">
+          <h4>Root Touch-Up</h4>
+          <p>Keep your color fresh between full appointments.</p>
+          <div class="price">From <em>$95</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-cat rv">
+      <div class="p-cat-label">
+        <span class="num">No. 03</span>
+        <h3>Treatments</h3>
+        <p>A little extra care for color-treated and hard-working hair.</p>
+      </div>
+      <div class="p-cards">
+        <div class="p-card">
+          <h4>Deep Conditioning</h4>
+          <p>An add-on to any service for softness and shine.</p>
+          <div class="price"><em>$30</em></div>
+        </div>
+        <div class="p-card">
+          <h4>Bond Repair</h4>
+          <p>Rebuilds strength in color-treated and heat-styled hair.</p>
+          <div class="price">From <em>$45</em></div>
+        </div>
+        <div class="p-card">
+          <h4>Scalp Ritual</h4>
+          <p>Massage, gentle exfoliation, and a few quiet minutes.</p>
+          <div class="price"><em>$40</em></div>
+        </div>
+        <div class="p-card">
+          <h4>Gloss &amp; Tone</h4>
+          <p>A shine and tone refresh between color appointments.</p>
+          <div class="price">From <em>$60</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-foot rv">
+      <p>Not sure what your hair needs? Start with a consultation — it's free.</p>
+      <a class="btn" href="#visit">Book a Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ visit / book ============ -->
+<section class="visit" id="visit">
+  <div class="wrap visit-grid">
+    <div class="rv">
+      <p class="eyebrow">Visit the studio</p>
+      <h2>Save your seat <em>in the chair.</em></h2>
+      <p class="sub">Appointments are one-on-one and fill up a few weeks out — reach out early for occasion styling. New guests always welcome.</p>
+      <div class="visit-details">
+        <div class="vd"><h4>Studio</h4><p>123 Placeholder Ln, Suite A<small>Manteca, CA 95336</small></p></div>
+        <div class="vd"><h4>Hours</h4><p>Tue – Sat<small>9:00 am – 5:00 pm &middot; by appointment</small></p></div>
+        <div class="vd"><h4>Call or text</h4><p>(209) 555-0123<small>Texts answered fastest</small></p></div>
+        <div class="vd"><h4>Follow</h4><p>@hairbymarissa<small>Instagram &middot; placeholder handle</small></p></div>
+      </div>
+      <a class="btn" href="tel:+12095550123">Book an Appointment</a>
+    </div>
+    <div class="map-frame rv">
+      <img class="cover" loading="lazy" src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?q=80&w=900&auto=format&fit=crop" alt="Studio interior with exposed brick wall and styling stations">
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ footer ============ -->
+<footer>
+  <div class="wrap foot">
+    <div class="foot-brand">
+      <svg viewBox="0 0 64 64" style="color:var(--maroon)"><use href="#monogram"/></svg>
+      Hair by Marissa
+    </div>
+    <nav aria-label="Footer">
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <p class="fine">&copy; 2026 Hair by Marissa &middot; Manteca, California</p>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}, { threshold: 0.12 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
