@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gricelda — Stylist at Serenity Rose Studios</title>
+<meta name="description" content="Gricelda is a stylist at Serenity Rose Studios in Manteca, CA. Coppers, reds & color melts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Karla:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Ms+Madi&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stylist.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="../index.html" aria-label="Serenity Rose Studios — home">
+      <img class="brand-logo" src="../assets/images/transparent.png" alt="" aria-hidden="true">
+      <span class="brand-name">Serenity Rose Studios<small>Manteca &middot; California</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="../index.html#stylists">All Stylists</a>
+      <a href="../index.html#gallery">Gallery</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="../index.html#visit">Visit</a>
+    </nav>
+    <a class="btn" href="#book">Book Now</a>
+  </div>
+</header>
+
+<main>
+<section class="s-hero">
+  <div class="wrap s-hero-grid">
+    <div>
+      <p class="eyebrow ld">Stylist at Serenity Rose Studios</p>
+      <h1 class="ld">Gricelda<span class="script">red hair, no regrets</span></h1>
+      <p class="lede ld">Coppers, cherry reds, and rich color melts — bold enough to turn heads, wearable enough for Monday morning.</p>
+      <div class="s-hero-actions ld">
+        <a class="btn" href="#book">Book with Gricelda</a>
+      </div>
+    </div>
+    <div class="s-hero-photo">
+      <div class="s-hero-frame">
+        <img class="cover" src="../assets/images/stylist-gricelda-portrait.jpg" alt="Portrait of Gricelda, stylist at Serenity Rose Studios">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s-bio">
+  <div class="wrap s-bio-grid">
+    <div class="s-bio-photo rv">
+      <div class="s-bio-frame">
+        <img class="cover" loading="lazy" src="../assets/images/stylist-gricelda-action.jpg" alt="Gricelda working with a client at Serenity Rose Studios">
+      </div>
+    </div>
+    <div class="s-bio-copy rv">
+      <p class="eyebrow">In my own words</p>
+      <h2>Everyone has a red <em>that suits them.</em></h2>
+            <p>I'm Gricelda, and reds are my love language. I became a stylist because I love the moment someone sees their new hair and sits up a little straighter. Reds and coppers are my specialty because they do that better than anything.</p>
+      <p>I'm the studio's resident plant hoarder and true-crime podcast listener. If you've been thinking about going red for years but never pulled the trigger, come sit in my chair and we'll find the shade that feels like you.</p>
+      <span class="s-sig">Gricelda</span>
+    </div>
+  </div>
+</section>
+
+<section class="s-book" id="book">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">Availability &amp; booking</p>
+      <h2>Find me <em>in the chair.</em></h2>
+      <p class="sub">Reach out to me directly to book — texts are answered fastest. You'll find the studio at 105 N Lincoln Ave in Manteca.</p>
+      <div class="s-book-details">
+        <div class="vd"><h4>Call or text</h4><p><a href="tel:+12095550163">(209) 555-0163</a><small>Texts answered fastest</small></p></div>
+        <div class="vd">
+          <h4>My days</h4>
+          <ul class="hours-list" aria-label="Gricelda's availability">
+            <li><span>Monday</span><span>Off</span></li>
+            <li><span>Tuesday</span><span>9 AM-6 PM</span></li>
+            <li><span>Wednesday</span><span>9 AM-6 PM</span></li>
+            <li><span>Thursday</span><span>11 AM-7 PM</span></li>
+            <li><span>Friday</span><span>9 AM-6 PM</span></li>
+            <li><span>Saturday</span><span>Off</span></li>
+            <li><span>Sunday</span><span>Off</span></li>
+          </ul>
+        </div>
+        <div class="vd"><h4>Follow</h4><p>@gricelda.colormelt<small>Instagram</small></p></div>
+        <div class="vd"><h4>Studio</h4><p><a href="https://www.google.com/maps/search/?api=1&amp;query=105%20N%20Lincoln%20Ave%2C%20Manteca%2C%20CA%2095336">105 N Lincoln Ave</a><small>Manteca, CA 95336</small></p></div>
+      </div>
+      <a class="btn" href="tel:+12095550163">Book with Gricelda</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="foot-brand">
+      <img class="brand-logo" src="../assets/images/transparent.png" alt="" aria-hidden="true">
+      Serenity Rose Studios
+    </div>
+    <nav aria-label="Footer">
+      <a href="../index.html#stylists">Stylists</a>
+      <a href="../index.html#gallery">Gallery</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="../index.html#visit">Visit</a>
+    </nav>
+    <p class="fine">&copy; 2026 Serenity Rose Studios &middot; Manteca, California</p>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}, { threshold: 0.12 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

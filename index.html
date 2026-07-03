@@ -173,6 +173,57 @@ section{padding:clamp(72px,11vh,130px) 0}
 .fact strong{display:block;font-family:var(--serif);font-size:30px;color:var(--maroon);font-weight:400}
 .fact span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
 
+/* ---------- stylists expanding panels ---------- */
+.team-row{display:flex;gap:clamp(10px,1.4vw,16px);height:clamp(440px,62vh,580px)}
+.team-panel{
+  position:relative;display:block;flex:1;min-width:0;overflow:hidden;border-radius:18px;
+  box-shadow:0 26px 54px -32px rgba(63,21,29,.45);
+  transition:flex .85s cubic-bezier(.3,.75,.25,1),border-radius .85s cubic-bezier(.3,.75,.25,1);
+}
+.team-panel:focus-visible{outline:2px solid var(--rose);outline-offset:4px}
+.team-panel img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%;
+  filter:saturate(.5) brightness(.72);transform:scale(1.03);
+  transition:filter .85s ease,transform .85s cubic-bezier(.3,.75,.25,1);
+}
+.team-panel.open{flex:3.4;border-radius:min(200px,24vw) min(200px,24vw) 18px 18px}
+.team-panel.open img{filter:none;transform:scale(1)}
+.team-tab{
+  position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:26px;opacity:1;transition:opacity .4s;
+}
+.team-panel.open .team-tab{opacity:0}
+.team-tab span{
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  font-family:var(--serif);font-style:italic;font-size:17px;letter-spacing:.12em;
+  color:var(--cream);text-shadow:0 1px 14px rgba(0,0,0,.6);white-space:nowrap;
+}
+.team-info{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:clamp(70px,9vw,110px) clamp(22px,3vw,38px) clamp(22px,3vw,32px);
+  background:linear-gradient(transparent,rgba(63,21,29,.55) 45%,rgba(63,21,29,.88));
+  color:var(--cream);opacity:0;transform:translateY(16px);
+  transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);
+}
+.team-panel.open .team-info{opacity:1;transform:none;transition-delay:.3s}
+.team-info h3{font-size:clamp(26px,3.2vw,42px);font-weight:300;color:var(--cream);line-height:1.05}
+.team-info .spec{display:block;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--blush);margin-top:8px}
+.team-info .more{
+  display:inline-block;margin-top:14px;font-family:var(--serif);font-style:italic;font-size:15px;
+  color:var(--cream);border-bottom:1px solid var(--rose);padding-bottom:2px;transition:color .25s;
+}
+.team-panel.open:hover .more{color:var(--blush)}
+@media(max-width:760px){
+  .team-row{flex-direction:column;height:auto;gap:12px}
+  .team-panel{flex:none;height:64px;border-radius:14px;transition:height .7s cubic-bezier(.3,.75,.25,1),border-radius .7s cubic-bezier(.3,.75,.25,1)}
+  .team-panel.open{flex:none;height:min(430px,116vw);border-radius:14px}
+  .team-tab{align-items:center;justify-content:flex-start;padding:0 22px}
+  .team-tab span{writing-mode:horizontal-tb;transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .team-panel,.team-panel img,.team-info,.team-tab{transition:none}
+}
+
 /* ---------- gallery (lookbook) ---------- */
 .gallery{background:var(--maroon);color:var(--cream);position:relative;overflow:hidden}
 .gallery .eyebrow{color:var(--rose)}
@@ -378,6 +429,7 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
     </a>
     <nav class="nav-links" aria-label="Main">
       <a href="#about">About</a>
+      <a href="#stylists">Stylists</a>
       <a href="#gallery">Gallery</a>
       <a href="#pricing">Pricing</a>
       <a href="#visit">Visit</a>
@@ -437,6 +489,63 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
         <div class="fact"><strong>1:1</strong><span>Private appointments</span></div>
         <div class="fact"><strong>&hearts;</strong><span>Manteca born &amp; raised</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ stylists ============ -->
+<section class="stylists" id="stylists">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">The studio family</p>
+      <h2>Meet the <em>stylists.</em></h2>
+    </div>
+    <div class="team-row rv" aria-label="Stylists at Serenity Rose Studios">
+      <a class="team-panel open" href="stylists/marissa.html">
+        <img loading="lazy" src="assets/images/stylist-marissa-portrait.jpg" alt="Marissa, owner and balayage specialist at Serenity Rose Studios">
+        <span class="team-tab" aria-hidden="true"><span>Marissa</span></span>
+        <div class="team-info">
+          <h3>Marissa</h3>
+          <span class="spec">Balayage &amp; Brunettes</span>
+          <span class="more">Meet Marissa</span>
+        </div>
+      </a>
+      <a class="team-panel" href="stylists/jess.html">
+        <img loading="lazy" src="assets/images/stylist-jess-portrait.jpg" alt="Jess, blonde specialist at Serenity Rose Studios">
+        <span class="team-tab" aria-hidden="true"><span>Jess</span></span>
+        <div class="team-info">
+          <h3>Jess</h3>
+          <span class="spec">Blondes &amp; Blowouts</span>
+          <span class="more">Meet Jess</span>
+        </div>
+      </a>
+      <a class="team-panel" href="stylists/gricelda.html">
+        <img loading="lazy" src="assets/images/stylist-gricelda-portrait.jpg" alt="Gricelda, red and copper color specialist at Serenity Rose Studios">
+        <span class="team-tab" aria-hidden="true"><span>Gricelda</span></span>
+        <div class="team-info">
+          <h3>Gricelda</h3>
+          <span class="spec">Coppers &amp; Reds</span>
+          <span class="more">Meet Gricelda</span>
+        </div>
+      </a>
+      <a class="team-panel" href="stylists/nancy.html">
+        <img loading="lazy" src="assets/images/stylist-nancy-portrait.jpg" alt="Nancy, curl specialist at Serenity Rose Studios">
+        <span class="team-tab" aria-hidden="true"><span>Nancy</span></span>
+        <div class="team-info">
+          <h3>Nancy</h3>
+          <span class="spec">Curls &amp; Texture</span>
+          <span class="more">Meet Nancy</span>
+        </div>
+      </a>
+      <a class="team-panel" href="stylists/lexi.html">
+        <img loading="lazy" src="assets/images/stylist-lexi-portrait.jpg" alt="Lexi, vivid and creative color specialist at Serenity Rose Studios">
+        <span class="team-tab" aria-hidden="true"><span>Lexi</span></span>
+        <div class="team-info">
+          <h3>Lexi</h3>
+          <span class="spec">Vivids &amp; Creative Color</span>
+          <span class="more">Meet Lexi</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -682,6 +791,7 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
     </div>
     <nav aria-label="Footer">
       <a href="#about">About</a>
+      <a href="#stylists">Stylists</a>
       <a href="#gallery">Gallery</a>
       <a href="#pricing">Pricing</a>
       <a href="#visit">Visit</a>
@@ -719,6 +829,26 @@ looks.forEach((b, i) => {
   b.addEventListener('mouseenter', () => setLook(i));
   b.addEventListener('focus', () => setLook(i));
 });
+/* stylists expanding panels */
+const panels = [...document.querySelectorAll('.team-panel')];
+const row = document.querySelector('.team-row');
+let pCur = 0, pTimer = null;
+function setPanel(i) {
+  pCur = i;
+  panels.forEach((p, j) => p.classList.toggle('open', j === i));
+}
+function pPlay() { if (!noMotion && !pTimer) pTimer = setInterval(() => setPanel((pCur + 1) % panels.length), 4200); }
+function pStop() { clearInterval(pTimer); pTimer = null; }
+panels.forEach((p, i) => {
+  p.addEventListener('mouseenter', () => setPanel(i));
+  p.addEventListener('focus', () => setPanel(i));
+});
+row.addEventListener('mouseenter', pStop);
+row.addEventListener('mouseleave', pPlay);
+new IntersectionObserver(es => {
+  for (const e of es) e.isIntersecting ? pPlay() : pStop();
+}, { threshold: 0.25 }).observe(row);
+
 gallery.addEventListener('mouseenter', stop);
 gallery.addEventListener('mouseleave', play);
 new IntersectionObserver(es => {
