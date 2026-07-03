@@ -103,7 +103,7 @@ header{
     inset 0 -2px 2px rgba(87,30,40,.12);
 }
 .btn.ghost:hover{color:var(--maroon-deep);box-shadow:0 16px 28px -18px rgba(87,30,40,.48),inset 0 2px 1px rgba(255,255,255,.8),inset 0 -2px 2px rgba(87,30,40,.14)}
-.nav .btn{padding:11px 22px}
+.nav .btn{flex:none;white-space:nowrap;padding:11px 22px}
 @keyframes buttonGleam{0%{background-position:-170% 0,0 0}58%,100%{background-position:270% 0,0 0}}
 
 /* ---------- hero ---------- */
@@ -346,14 +346,18 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
   .foot .fine{font-size:15px}
 }
 @media(max-width:420px){
-  .brand{gap:9px}
+  .nav{gap:10px}
+  .brand{gap:9px;min-width:0;flex:1}
   .brand-logo{width:38px;height:38px}
-  .brand-name{font-size:18px;max-width:132px}
+  .brand-name{font-size:17px;max-width:120px}
   .brand-name small{font-size:9px;letter-spacing:.14em}
-  .nav .btn{font-size:12px;letter-spacing:.1em;padding:10px 16px}
+  .nav .btn{font-size:11px;letter-spacing:.08em;padding:9px 12px}
 }
 @media(max-width:360px){
+  .brand-logo{width:34px;height:34px}
+  .brand-name{font-size:16px;max-width:108px}
   .brand-name small{display:none}
+  .nav .btn{padding:8px 10px}
 }
 @media(prefers-reduced-motion:reduce){
   .btn{animation:none}
