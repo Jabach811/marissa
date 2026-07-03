@@ -214,9 +214,16 @@ section{padding:clamp(72px,11vh,130px) 0}
 }
 .team-panel.open:hover .more{color:var(--blush)}
 @media(max-width:760px){
-  .team-row{flex-direction:column;height:auto;gap:12px}
-  .team-panel{flex:none;height:64px;border-radius:14px;transition:height .7s cubic-bezier(.3,.75,.25,1),border-radius .7s cubic-bezier(.3,.75,.25,1)}
-  .team-panel.open{flex:none;height:min(430px,116vw);border-radius:14px}
+  /* pinned scrollytelling: the accordion sticks below the header and fills the
+     screen while the tall .team-pin spacer provides the scroll distance */
+  .team-pin{height:300vh}
+  .team-row{
+    flex-direction:column;gap:12px;
+    position:sticky;top:88px;
+    height:calc(100vh - 112px);height:calc(100svh - 112px);
+  }
+  .team-panel{flex:1;border-radius:14px}
+  .team-panel.open{flex:5;border-radius:14px}
   .team-tab{align-items:center;justify-content:flex-start;padding:0 22px}
   .team-tab span{writing-mode:horizontal-tb;transform:none}
 }
@@ -508,6 +515,7 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
       <p class="eyebrow">The studio family</p>
       <h2>Meet the <em>stylists.</em></h2>
     </div>
+    <div class="team-pin">
     <div class="team-row rv" aria-label="Stylists at Serenity Rose Studios">
       <a class="team-panel open" href="stylists/marissa.html">
         <img loading="lazy" src="assets/images/stylist-marissa-portrait.jpg" alt="Marissa, owner and balayage specialist at Serenity Rose Studios">
@@ -554,6 +562,7 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
           <span class="more">Meet Lexi</span>
         </div>
       </a>
+    </div>
     </div>
   </div>
 </section>
@@ -851,11 +860,37 @@ panels.forEach((p, i) => {
   p.addEventListener('mouseenter', () => setPanel(i));
   p.addEventListener('focus', () => setPanel(i));
 });
-row.addEventListener('mouseenter', pStop);
-row.addEventListener('mouseleave', pPlay);
+
+/* mobile: pin the accordion and open each stylist as the visitor scrolls
+   through the .team-pin spacer (desktop keeps hover + auto-play) */
+const teamMobile = matchMedia('(max-width: 760px)');
+const pin = document.querySelector('.team-pin');
+let pinInView = false, pTicking = false;
+
+function teamSync() {
+  pTicking = false;
+  const pr = pin.getBoundingClientRect();
+  const travel = pr.height - row.offsetHeight;
+  const p = travel > 0 ? Math.min(1, Math.max(0, (88 - pr.top) / travel)) : 0;
+  setPanel(Math.min(panels.length - 1, Math.floor(p * panels.length)));
+}
+function onTeamScroll() { if (!pTicking) { pTicking = true; requestAnimationFrame(teamSync); } }
+
+function teamMode() {
+  window.removeEventListener('scroll', onTeamScroll);
+  pStop();
+  if (!pinInView) return;
+  if (teamMobile.matches) { window.addEventListener('scroll', onTeamScroll, { passive: true }); teamSync(); }
+  else pPlay();
+}
+
+row.addEventListener('mouseenter', () => { if (!teamMobile.matches) pStop(); });
+row.addEventListener('mouseleave', () => { if (!teamMobile.matches && pinInView) pPlay(); });
+teamMobile.addEventListener('change', teamMode);
 new IntersectionObserver(es => {
-  for (const e of es) e.isIntersecting ? pPlay() : pStop();
-}, { threshold: 0.25 }).observe(row);
+  for (const e of es) { pinInView = e.isIntersecting; }
+  teamMode();
+}, { threshold: 0.05 }).observe(pin);
 
 /* mobile: advance the lookbook as the section scrolls through the viewport
    (desktop keeps hover + auto-play) */
