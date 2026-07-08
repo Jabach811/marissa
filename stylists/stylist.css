@@ -53,23 +53,23 @@ header{
 .nav-links a{color:var(--ink-soft);transition:color .25s}
 .nav-links a:hover{color:var(--maroon)}
 .btn{
-  position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
   font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
-  color:var(--cream);padding:14px 28px;border-radius:999px;border:1px solid rgba(248,241,232,.22);cursor:pointer;
-  background:
-    linear-gradient(115deg,transparent 31%,rgba(255,244,232,.58) 46%,transparent 61%) -170% 0 / 270% 100% no-repeat,
-    linear-gradient(135deg,var(--maroon-deep) 0%,var(--maroon) 36%,var(--rose-deep) 54%,var(--maroon) 70%,var(--maroon-deep) 100%);
-  box-shadow:
-    0 12px 24px -13px rgba(87,30,40,.72),
-    inset 0 2px 1px rgba(255,255,255,.28),
-    inset 0 -2px 2px rgba(63,21,29,.5);
-  animation:buttonGleam 3.8s ease-in-out infinite;
-  transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease,filter .3s ease,color .3s ease;
+  color:var(--cream);padding:14px 28px;border-radius:999px;border:1px solid transparent;cursor:pointer;
+  background:var(--maroon);
+  box-shadow:0 12px 24px -13px rgba(87,30,40,.5);
+  transition:background .25s ease,transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease,color .25s ease;
 }
-.btn:hover{transform:translateY(-2px);filter:saturate(1.04)}
+.btn:hover{background:var(--maroon-deep);transform:translateY(-2px);box-shadow:0 16px 28px -15px rgba(87,30,40,.6)}
+.btn:active{transform:translateY(0)}
 .btn:focus-visible{outline:2px solid var(--rose);outline-offset:4px}
 .nav .btn{flex:none;white-space:nowrap;padding:11px 22px}
-@keyframes buttonGleam{0%{background-position:-170% 0,0 0}58%,100%{background-position:270% 0,0 0}}
+.nav-toggle{display:none;flex:none;position:relative;width:40px;height:40px;background:none;border:0;cursor:pointer}
+.nav-toggle span{position:absolute;left:10px;right:10px;height:2px;background:var(--maroon);transition:transform .3s,top .3s}
+.nav-toggle span:first-child{top:16px}
+.nav-toggle span:last-child{top:23px}
+.nav-toggle[aria-expanded="true"] span:first-child{top:19px;transform:rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:last-child{top:19px;transform:rotate(-45deg)}
 .eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:26px}
 section{padding:clamp(72px,11vh,130px) 0}
 
@@ -130,16 +130,8 @@ section{padding:clamp(72px,11vh,130px) 0}
 .hours-list{list-style:none;font-size:16px;color:var(--blush);font-weight:400;line-height:1.62}
 .hours-list li{display:flex;justify-content:space-between;gap:22px;border-bottom:1px solid rgba(236,211,210,.16);padding:4px 0}
 .hours-list span:first-child{color:var(--cream)}
-.s-book .btn{
-  color:var(--maroon-deep);border-color:rgba(248,241,232,.38);
-  background:
-    linear-gradient(115deg,transparent 31%,rgba(255,255,255,.62) 46%,transparent 61%) -170% 0 / 270% 100% no-repeat,
-    linear-gradient(135deg,var(--rose-deep) 0%,var(--rose) 35%,var(--blush) 52%,var(--rose) 68%,var(--rose-deep) 100%);
-  box-shadow:
-    0 14px 30px -16px rgba(236,211,210,.52),
-    inset 0 2px 1px rgba(255,255,255,.55),
-    inset 0 -2px 2px rgba(87,30,40,.28);
-}
+.s-book .btn{color:var(--maroon-deep);background:var(--blush);box-shadow:0 14px 30px -16px rgba(236,211,210,.4)}
+.s-book .btn:hover{background:var(--cream)}
 
 /* footer */
 footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
@@ -154,7 +146,14 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
   .s-hero-grid,.s-bio-grid{grid-template-columns:1fr}
   .s-hero-photo{max-width:440px;margin:20px auto 0}
   .s-bio-photo{max-width:420px}
-  .nav-links{display:none}
+  .nav-toggle{display:block}
+  .nav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;gap:0;padding:8px 0 16px;
+    background:var(--cream);border-bottom:1px solid var(--hairline);
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px clamp(20px,5vw,48px)}
 }
 @media(max-width:640px){
   .s-book-details{grid-template-columns:1fr}
@@ -171,6 +170,5 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
   .nav .btn{font-size:11px;letter-spacing:.08em;padding:9px 12px}
 }
 @media(prefers-reduced-motion:reduce){
-  .btn{animation:none}
   .rv,.s-hero .ld,.s-hero-photo{opacity:1!important;transform:none!important;animation:none!important}
 }

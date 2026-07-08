@@ -3,28 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marissa — Stylist at Serenity Rose Studios</title>
+<title>Marissa â€” Stylist at Serenity Rose Studios</title>
 <meta name="description" content="Marissa is a stylist at Serenity Rose Studios in Manteca, CA. Lived-in balayage & brunette dimension.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Karla:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Ms+Madi&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/images/favicon.png">
+<link rel="apple-touch-icon" href="../assets/images/favicon.png">
 <link rel="stylesheet" href="stylist.css">
 </head>
 <body>
 
 <header>
   <div class="wrap nav">
-    <a class="brand" href="../index.html" aria-label="Serenity Rose Studios — home">
+    <a class="brand" href="../index.html" aria-label="Serenity Rose Studios â€” home">
       <img class="brand-logo" src="../assets/images/transparent.png" alt="" aria-hidden="true">
       <span class="brand-name">Serenity Rose Studios<small>Manteca &middot; California</small></span>
     </a>
-    <nav class="nav-links" aria-label="Main">
+    <nav class="nav-links" id="nav-menu" aria-label="Main">
       <a href="../index.html#stylists">All Stylists</a>
       <a href="../index.html#gallery">Gallery</a>
       <a href="../index.html#pricing">Pricing</a>
       <a href="../index.html#visit">Visit</a>
     </nav>
     <a class="btn" href="#book">Book Now</a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu"><span></span><span></span></button>
   </div>
 </header>
 
@@ -34,7 +37,7 @@
     <div>
       <p class="eyebrow ld">Stylist at Serenity Rose Studios</p>
       <h1 class="ld">Marissa<span class="script">sun-kissed & seamless</span></h1>
-      <p class="lede ld">Balayage and brunette dimension that grows out soft — no harsh lines, no stress about your next appointment.</p>
+      <p class="lede ld">Balayage and brunette dimension that grows out soft â€” no harsh lines, no stress about your next appointment.</p>
       <div class="s-hero-actions ld">
         <a class="btn" href="#book">Book with Marissa</a>
       </div>
@@ -57,8 +60,8 @@
     <div class="s-bio-copy rv">
       <p class="eyebrow">In my own words</p>
       <h2>Good color should <em>keep a secret.</em></h2>
-            <p>Hi, I'm Marissa. I've been doing hair for over a decade, and I fell in love with balayage because it never looks like it's trying too hard. My favorite compliment a client can get is “your hair just always looks like that.”</p>
-      <p>This studio is my little corner of Manteca, and I built it so every guest gets the chair — and the conversation — all to themselves. Whether you're after a big change or just keeping what you love looking its best, we go at your pace.</p>
+            <p>Hi, I'm Marissa. I've been doing hair for over a decade, and I fell in love with balayage because it never looks like it's trying too hard. My favorite compliment a client can get is â€œyour hair just always looks like that.â€</p>
+      <p>This studio is my little corner of Manteca, and I built it so every guest gets the chair â€” and the conversation â€” all to themselves. Whether you're after a big change or just keeping what you love looking its best, we go at your pace.</p>
       <span class="s-sig">Marissa</span>
     </div>
   </div>
@@ -69,7 +72,7 @@
     <div class="rv">
       <p class="eyebrow">Availability &amp; booking</p>
       <h2>Find me <em>in the chair.</em></h2>
-      <p class="sub">Reach out to me directly to book — texts are answered fastest. You'll find the studio at 105 N Lincoln Ave in Manteca.</p>
+      <p class="sub">Reach out to me directly to book â€” texts are answered fastest. You'll find the studio at 105 N Lincoln Ave in Manteca.</p>
       <div class="s-book-details">
         <div class="vd"><h4>Call or text</h4><p><a href="tel:+12097178044">(209) 717-8044</a><small>Texts answered fastest</small></p></div>
         <div class="vd">
@@ -114,6 +117,13 @@ const io = new IntersectionObserver(entries => {
   for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
 }, { threshold: 0.12 });
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+navToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open);
+});
 </script>
 </body>
 </html>

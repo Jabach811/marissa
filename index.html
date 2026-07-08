@@ -5,6 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Serenity Rose Studios — Salon Studio in Manteca, CA</title>
 <meta name="description" content="A private hair studio in Manteca, California. Cuts, color, balayage, and occasion styling in a warm, one-on-one setting.">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Serenity Rose Studios — Salon Studio in Manteca, CA">
+<meta property="og:description" content="A private hair studio in Manteca, California. Cuts, color, balayage, and occasion styling in a warm, one-on-one setting.">
+<meta property="og:url" content="https://jabach811.github.io/marissa/">
+<meta property="og:image" content="https://jabach811.github.io/marissa/assets/images/serenity-rose-sign.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Serenity Rose Studios",
+  "image": "https://jabach811.github.io/marissa/assets/images/serenity-rose-sign.jpg",
+  "url": "https://jabach811.github.io/marissa/",
+  "telephone": "+12097178044",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "105 N Lincoln Ave",
+    "addressLocality": "Manteca",
+    "addressRegion": "CA",
+    "postalCode": "95336",
+    "addressCountry": "US"
+  },
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "17:00"}
+  ],
+  "sameAs": [
+    "https://www.instagram.com/serenityrosestudios",
+    "https://www.facebook.com/SerenityRoseStudios/"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Karla:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Ms+Madi&display=swap" rel="stylesheet">
@@ -68,43 +102,26 @@ header{
 .nav-links{display:flex;gap:34px;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
 .nav-links a{color:var(--ink-soft);transition:color .25s}
 .nav-links a:hover{color:var(--maroon)}
+.nav-toggle{display:none;flex:none;position:relative;width:40px;height:40px;background:none;border:0;cursor:pointer}
+.nav-toggle span{position:absolute;left:10px;right:10px;height:2px;background:var(--maroon);transition:transform .3s,top .3s}
+.nav-toggle span:first-child{top:16px}
+.nav-toggle span:last-child{top:23px}
+.nav-toggle[aria-expanded="true"] span:first-child{top:19px;transform:rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:last-child{top:19px;transform:rotate(-45deg)}
 .btn{
-  position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
   font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
-  color:var(--cream);padding:14px 28px;border-radius:999px;border:1px solid rgba(248,241,232,.22);cursor:pointer;
-  background:
-    linear-gradient(115deg,transparent 31%,rgba(255,244,232,.58) 46%,transparent 61%) -170% 0 / 270% 100% no-repeat,
-    linear-gradient(135deg,var(--maroon-deep) 0%,var(--maroon) 36%,var(--rose-deep) 54%,var(--maroon) 70%,var(--maroon-deep) 100%);
-  box-shadow:
-    0 12px 24px -13px rgba(87,30,40,.72),
-    inset 0 2px 1px rgba(255,255,255,.28),
-    inset 0 -2px 2px rgba(63,21,29,.5);
-  animation:buttonGleam 3.8s ease-in-out infinite;
-  transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease,filter .3s ease,color .3s ease;
+  color:var(--cream);padding:14px 28px;border-radius:999px;border:1px solid transparent;cursor:pointer;
+  background:var(--maroon);
+  box-shadow:0 12px 24px -13px rgba(87,30,40,.5);
+  transition:background .25s ease,transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease,color .25s ease;
 }
-.btn:hover{
-  transform:translateY(-2px);
-  filter:saturate(1.04);
-  box-shadow:
-    0 18px 32px -15px rgba(87,30,40,.82),
-    inset 0 2px 1px rgba(255,255,255,.34),
-    inset 0 -2px 2px rgba(63,21,29,.46);
-}
-.btn:active{transform:translateY(0);box-shadow:0 8px 18px -13px rgba(87,30,40,.7),inset 0 1px 1px rgba(255,255,255,.24),inset 0 -1px 2px rgba(63,21,29,.5)}
+.btn:hover{background:var(--maroon-deep);transform:translateY(-2px);box-shadow:0 16px 28px -15px rgba(87,30,40,.6)}
+.btn:active{transform:translateY(0)}
 .btn:focus-visible{outline:2px solid var(--rose);outline-offset:4px}
-.btn.ghost{
-  color:var(--maroon);border-color:rgba(87,30,40,.42);
-  background:
-    linear-gradient(115deg,transparent 31%,rgba(255,255,255,.78) 46%,transparent 61%) -170% 0 / 270% 100% no-repeat,
-    linear-gradient(135deg,rgba(248,241,232,.32) 0%,rgba(248,241,232,.78) 44%,rgba(236,211,210,.52) 55%,rgba(248,241,232,.7) 100%);
-  box-shadow:
-    0 10px 22px -16px rgba(87,30,40,.38),
-    inset 0 2px 1px rgba(255,255,255,.72),
-    inset 0 -2px 2px rgba(87,30,40,.12);
-}
-.btn.ghost:hover{color:var(--maroon-deep);box-shadow:0 16px 28px -18px rgba(87,30,40,.48),inset 0 2px 1px rgba(255,255,255,.8),inset 0 -2px 2px rgba(87,30,40,.14)}
+.btn.ghost{color:var(--maroon);border-color:rgba(87,30,40,.42);background:transparent;box-shadow:none}
+.btn.ghost:hover{background:rgba(87,30,40,.06);color:var(--maroon-deep);box-shadow:none}
 .nav .btn{flex:none;white-space:nowrap;padding:11px 22px}
-@keyframes buttonGleam{0%{background-position:-170% 0,0 0}58%,100%{background-position:270% 0,0 0}}
 
 /* ---------- hero ---------- */
 .hero{position:relative;padding:clamp(56px,9vh,110px) 0 clamp(70px,10vh,130px)}
@@ -359,17 +376,8 @@ section{padding:clamp(72px,11vh,130px) 0}
 .social-links{display:flex;flex-wrap:wrap;gap:11px;margin-top:13px}
 .social-links a{font-size:14px;letter-spacing:.17em;text-transform:uppercase;color:var(--blush);border-bottom:1px solid rgba(236,211,210,.45);padding-bottom:3px}
 .social-links a:hover{color:var(--cream);border-bottom-color:var(--rose)}
-.visit .btn{
-  color:var(--maroon-deep);border-color:rgba(248,241,232,.38);
-  background:
-    linear-gradient(115deg,transparent 31%,rgba(255,255,255,.62) 46%,transparent 61%) -170% 0 / 270% 100% no-repeat,
-    linear-gradient(135deg,var(--rose-deep) 0%,var(--rose) 35%,var(--blush) 52%,var(--rose) 68%,var(--rose-deep) 100%);
-  box-shadow:
-    0 14px 30px -16px rgba(236,211,210,.52),
-    inset 0 2px 1px rgba(255,255,255,.55),
-    inset 0 -2px 2px rgba(87,30,40,.28);
-}
-.visit .btn:hover{box-shadow:0 20px 36px -17px rgba(236,211,210,.62),inset 0 2px 1px rgba(255,255,255,.62),inset 0 -2px 2px rgba(87,30,40,.24)}
+.visit .btn{color:var(--maroon-deep);background:var(--blush);box-shadow:0 14px 30px -16px rgba(236,211,210,.4)}
+.visit .btn:hover{background:var(--cream)}
 .sign-frame{border-radius:16px;overflow:hidden;box-shadow:0 26px 60px -30px rgba(0,0,0,.5)}
 .studio-sign figcaption{margin-top:16px;text-align:center;font-family:var(--serif);font-style:italic;font-size:14px;color:var(--blush)}
 
@@ -396,7 +404,14 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
   }
   .look-stage img{transition:opacity .45s ease,transform 2.4s cubic-bezier(.16,.6,.3,1)}
   .look-list{padding-bottom:8vh}
-  .nav-links{display:none}
+  .nav-toggle{display:block}
+  .nav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;gap:0;padding:8px 0 16px;
+    background:var(--cream);border-bottom:1px solid var(--hairline);
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px clamp(20px,5vw,48px)}
   .about-photo{max-width:420px}
   .p-cat{grid-template-columns:1fr;gap:24px}
   .p-cat-label{position:static}
@@ -426,7 +441,6 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
   .nav .btn{padding:8px 10px}
 }
 @media(prefers-reduced-motion:reduce){
-  .btn{animation:none}
   .rv,.hero .ld,.hero-photo-wrap{opacity:1!important;transform:none!important;animation:none!important}
   .strip-track{animation:none}
   .look-stage img{transform:none;transition:opacity .4s ease}
@@ -442,7 +456,7 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
       <img class="brand-logo" src="assets/images/transparent.png" alt="" aria-hidden="true">
       <span class="brand-name">Serenity Rose Studios<small>Manteca &middot; California</small></span>
     </a>
-    <nav class="nav-links" aria-label="Main">
+    <nav class="nav-links" id="nav-menu" aria-label="Main">
       <a href="#about">About</a>
       <a href="#stylists">Stylists</a>
       <a href="#gallery">Gallery</a>
@@ -450,6 +464,7 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
       <a href="#visit">Visit</a>
     </nav>
     <a class="btn" href="#visit">Book Now</a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu"><span></span><span></span></button>
   </div>
 </header>
 
@@ -848,23 +863,30 @@ looks.forEach((b, i) => {
 });
 /* stylists expanding panels */
 const panels = [...document.querySelectorAll('.team-panel')];
-const row = document.querySelector('.team-row');
-let pCur = 0, pTimer = null;
 function setPanel(i) {
-  pCur = i;
   panels.forEach((p, j) => p.classList.toggle('open', j === i));
 }
-function pPlay() { if (!noMotion && !pTimer) pTimer = setInterval(() => setPanel((pCur + 1) % panels.length), 4200); }
-function pStop() { clearInterval(pTimer); pTimer = null; }
 panels.forEach((p, i) => {
   p.addEventListener('mouseenter', () => setPanel(i));
   p.addEventListener('focus', () => setPanel(i));
 });
 
+/* mobile nav */
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+navToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open);
+});
+navLinks.addEventListener('click', e => {
+  if (e.target.tagName === 'A') { navLinks.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
+});
+
 /* mobile: pin the accordion and open each stylist as the visitor scrolls
-   through the .team-pin spacer (desktop keeps hover + auto-play) */
+   through the .team-pin spacer (desktop keeps hover) */
 const teamMobile = matchMedia('(max-width: 760px)');
 const pin = document.querySelector('.team-pin');
+const row = document.querySelector('.team-row');
 let pinInView = false, pTicking = false;
 
 function teamSync() {
@@ -878,14 +900,9 @@ function onTeamScroll() { if (!pTicking) { pTicking = true; requestAnimationFram
 
 function teamMode() {
   window.removeEventListener('scroll', onTeamScroll);
-  pStop();
-  if (!pinInView) return;
-  if (teamMobile.matches) { window.addEventListener('scroll', onTeamScroll, { passive: true }); teamSync(); }
-  else pPlay();
+  if (pinInView && teamMobile.matches) { window.addEventListener('scroll', onTeamScroll, { passive: true }); teamSync(); }
 }
 
-row.addEventListener('mouseenter', () => { if (!teamMobile.matches) pStop(); });
-row.addEventListener('mouseleave', () => { if (!teamMobile.matches && pinInView) pPlay(); });
 teamMobile.addEventListener('change', teamMode);
 new IntersectionObserver(es => {
   for (const e of es) { pinInView = e.isIntersecting; }

@@ -3,28 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jess — Stylist at Serenity Rose Studios</title>
+<title>Jess â€” Stylist at Serenity Rose Studios</title>
 <meta name="description" content="Jess is a stylist at Serenity Rose Studios in Manteca, CA. Blondes & signature blowouts.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Karla:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Ms+Madi&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/images/favicon.png">
+<link rel="apple-touch-icon" href="../assets/images/favicon.png">
 <link rel="stylesheet" href="stylist.css">
 </head>
 <body>
 
 <header>
   <div class="wrap nav">
-    <a class="brand" href="../index.html" aria-label="Serenity Rose Studios — home">
+    <a class="brand" href="../index.html" aria-label="Serenity Rose Studios â€” home">
       <img class="brand-logo" src="../assets/images/transparent.png" alt="" aria-hidden="true">
       <span class="brand-name">Serenity Rose Studios<small>Manteca &middot; California</small></span>
     </a>
-    <nav class="nav-links" aria-label="Main">
+    <nav class="nav-links" id="nav-menu" aria-label="Main">
       <a href="../index.html#stylists">All Stylists</a>
       <a href="../index.html#gallery">Gallery</a>
       <a href="../index.html#pricing">Pricing</a>
       <a href="../index.html#visit">Visit</a>
     </nav>
     <a class="btn" href="#book">Book Now</a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu"><span></span><span></span></button>
   </div>
 </header>
 
@@ -34,7 +37,7 @@
     <div>
       <p class="eyebrow ld">Stylist at Serenity Rose Studios</p>
       <h1 class="ld">Jess<span class="script">bright, soft, believable</span></h1>
-      <p class="lede ld">Blonding that looks expensive and feels healthy — plus the bounciest blowout in Manteca.</p>
+      <p class="lede ld">Blonding that looks expensive and feels healthy â€” plus the bounciest blowout in Manteca.</p>
       <div class="s-hero-actions ld">
         <a class="btn" href="#book">Book with Jess</a>
       </div>
@@ -57,7 +60,7 @@
     <div class="s-bio-copy rv">
       <p class="eyebrow">In my own words</p>
       <h2>Blonde is a craft, <em>not a shade.</em></h2>
-            <p>Hey! I'm Jess. Blondes are my whole world — I've spent years learning how to get you bright without wrecking your hair, and I'll always tell you honestly what your hair can handle in one visit.</p>
+            <p>Hey! I'm Jess. Blondes are my whole world â€” I've spent years learning how to get you bright without wrecking your hair, and I'll always tell you honestly what your hair can handle in one visit.</p>
       <p>Outside the studio I'm usually at a farmers market or trying a new recipe that my husband pretends to like. In the chair, expect good playlists, zero judgment about how long it's been since your last trim, and a blowout you'll want to sleep sitting up for.</p>
       <span class="s-sig">Jess</span>
     </div>
@@ -69,7 +72,7 @@
     <div class="rv">
       <p class="eyebrow">Availability &amp; booking</p>
       <h2>Find me <em>in the chair.</em></h2>
-      <p class="sub">Reach out to me directly to book — texts are answered fastest. You'll find the studio at 105 N Lincoln Ave in Manteca.</p>
+      <p class="sub">Reach out to me directly to book â€” texts are answered fastest. You'll find the studio at 105 N Lincoln Ave in Manteca.</p>
       <div class="s-book-details">
         <div class="vd"><h4>Call or text</h4><p><a href="tel:+12095550117">(209) 555-0117</a><small>Texts answered fastest</small></p></div>
         <div class="vd">
@@ -114,6 +117,13 @@ const io = new IntersectionObserver(entries => {
   for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
 }, { threshold: 0.12 });
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+navToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open);
+});
 </script>
 </body>
 </html>
