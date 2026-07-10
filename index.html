@@ -43,6 +43,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Karla:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Ms+Madi&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
 <style>
 :root{
   --cream:#f8f1e8;
@@ -50,6 +51,7 @@
   --blush:#ecd3d2;
   --rose:#c07f8b;
   --rose-deep:#a2606e;
+  --rose-text:#8b4656;
   --maroon:#571e28;
   --maroon-deep:#3f151d;
   --wood:#8a6a52;
@@ -80,13 +82,16 @@ body::after{
 
 h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
 .cover{width:100%;height:100%;object-fit:cover}
 
-/* ---------- reveal on scroll ---------- */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
-.rv.in{opacity:1;transform:none}
+/* ---------- progressive reveal ---------- */
+.rv{opacity:1;transform:none}
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.skip-link{position:fixed;left:16px;top:12px;z-index:110;transform:translateY(-160%);background:var(--cream);color:var(--maroon-deep);border:2px solid var(--maroon-deep);border-radius:8px;padding:10px 14px;font-weight:600}
+.skip-link:focus{transform:none}
 
 /* ---------- header ---------- */
 header{
@@ -119,7 +124,7 @@ header{
 }
 .btn:hover{background:var(--maroon-deep);transform:translateY(-2px);box-shadow:0 16px 28px -15px rgba(87,30,40,.6)}
 .btn:active{transform:translateY(0)}
-.btn:focus-visible{outline:2px solid var(--rose);outline-offset:4px}
+.btn:focus-visible{outline:3px solid var(--cream);outline-offset:3px;box-shadow:0 0 0 6px var(--maroon-deep)}
 .btn.ghost{color:var(--maroon);border-color:rgba(87,30,40,.42);background:transparent;box-shadow:none}
 .btn.ghost:hover{background:rgba(87,30,40,.06);color:var(--maroon-deep);box-shadow:none}
 .nav .btn{flex:none;white-space:nowrap;padding:11px 22px}
@@ -127,10 +132,10 @@ header{
 /* ---------- hero ---------- */
 .hero{position:relative;padding:clamp(56px,9vh,110px) 0 clamp(70px,10vh,130px)}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,6vw,80px);align-items:center}
-.eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:26px}
+.eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose-text);margin-bottom:26px}
 .hero h1{font-size:clamp(44px,6.4vw,84px);color:var(--maroon);font-weight:300}
 .hero .script{
-  font-family:var(--script);font-size:clamp(38px,4.6vw,62px);color:var(--rose);
+  font-family:var(--script);font-size:clamp(38px,4.6vw,62px);color:var(--rose-text);
   display:block;transform:rotate(-2deg);margin:6px 0 2px 4px;line-height:1;
 }
 .hero p.lede{max-width:44ch;font-size:17px;color:var(--ink-soft);margin:28px 0 36px;font-weight:300}
@@ -198,7 +203,7 @@ section{padding:clamp(72px,11vh,130px) 0}
   box-shadow:0 26px 54px -32px rgba(63,21,29,.45);
   transition:flex .85s cubic-bezier(.3,.75,.25,1),border-radius .85s cubic-bezier(.3,.75,.25,1);
 }
-.team-panel:focus-visible{outline:2px solid var(--rose);outline-offset:4px}
+.team-panel:focus-visible{outline:3px solid var(--cream);outline-offset:3px;box-shadow:0 0 0 6px var(--maroon-deep)}
 .team-panel img{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%;
   filter:saturate(.5) brightness(.72);transform:scale(1.03);
@@ -248,10 +253,14 @@ section{padding:clamp(72px,11vh,130px) 0}
 @media(prefers-reduced-motion:reduce){
   .team-panel,.team-panel img,.team-info,.team-tab{transition:none}
 }
+@media(max-width:760px) and (prefers-reduced-motion:reduce){
+  .team-pin{height:auto}
+  .team-row{position:static;top:auto;height:auto}
+}
 
 /* ---------- gallery (lookbook) ---------- */
 .gallery{background:var(--maroon);color:var(--cream);position:relative;overflow:clip}
-.gallery .eyebrow{color:var(--rose)}
+.gallery .eyebrow{color:var(--blush)}
 .gallery h2{color:var(--cream)}
 .look-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(36px,6vw,84px);align-items:center}
 .look-list{list-style:none}
@@ -260,10 +269,10 @@ section{padding:clamp(72px,11vh,130px) 0}
   display:flex;gap:22px;align-items:baseline;width:100%;text-align:left;
   background:none;border:0;padding:19px 0;cursor:pointer;color:inherit;font:inherit;
 }
-.look-num{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--rose);flex:none}
+.look-num{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--blush);flex:none}
 .look-title{
   display:block;font-family:var(--serif);font-weight:300;line-height:1.15;
-  font-size:clamp(24px,2.9vw,38px);color:rgba(236,211,210,.34);transition:color .45s;
+  font-size:clamp(24px,2.9vw,38px);color:rgba(236,211,210,.64);transition:color .45s;
 }
 .look-desc{
   display:block;overflow:hidden;max-height:0;opacity:0;
@@ -278,12 +287,14 @@ section{padding:clamp(72px,11vh,130px) 0}
   background:var(--maroon);
   box-shadow:0 34px 70px -35px rgba(0,0,0,.55);
 }
-.look-stage img{
+.look-panel{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:0;transform:scale(1.07);
   transition:opacity .9s ease,transform 6.5s cubic-bezier(.16,.6,.3,1);
 }
-.look-stage img.active{opacity:1;transform:scale(1)}
+.look-panel[hidden]{display:none}
+.look-panel img{width:100%;height:100%;object-fit:cover}
+.look-panel.active{opacity:1;transform:scale(1)}
 .look-count{
   position:absolute;left:22px;bottom:16px;font-family:var(--serif);font-style:italic;
   font-size:14px;letter-spacing:.08em;color:var(--cream);text-shadow:0 1px 10px rgba(0,0,0,.5);
@@ -363,12 +374,12 @@ section{padding:clamp(72px,11vh,130px) 0}
   color:var(--cream);
 }
 .visit-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:clamp(36px,5vw,72px);align-items:center}
-.visit .eyebrow{color:var(--rose)}
+.visit .eyebrow{color:var(--blush)}
 .visit h2{color:var(--cream);font-size:clamp(32px,4.2vw,52px);font-weight:300;margin-bottom:18px}
 .visit h2 em{font-style:italic;color:var(--blush)}
 .visit p.sub{color:var(--blush);font-weight:300;max-width:46ch;margin-bottom:34px}
 .visit-details{display:grid;grid-template-columns:minmax(210px,.9fr) minmax(300px,1.1fr);gap:34px 46px;margin-bottom:44px}
-.vd h4{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--rose);margin-bottom:11px;font-weight:600}
+.vd h3{font-family:var(--sans);font-size:13px;line-height:1.2;letter-spacing:.28em;text-transform:uppercase;color:var(--blush);margin-bottom:11px;font-weight:600}
 .vd p{font-family:var(--serif);font-size:23px;color:var(--cream);line-height:1.38}
 .vd p small{display:block;font-family:var(--sans);font-size:16px;color:var(--blush);font-weight:300;margin-top:5px}
 .hours-list{list-style:none;font-size:16px;color:var(--blush);font-weight:400;line-height:1.62}
@@ -403,7 +414,7 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
     aspect-ratio:auto;height:min(44vh,430px);
     box-shadow:0 24px 50px -18px rgba(0,0,0,.6);
   }
-  .look-stage img{transition:opacity .45s ease,transform 2.4s cubic-bezier(.16,.6,.3,1)}
+  .look-panel{transition:opacity .45s ease,transform 2.4s cubic-bezier(.16,.6,.3,1)}
   .look-list{padding-bottom:8vh}
   .nav-toggle{display:block}
   .nav-links{
@@ -412,7 +423,7 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
     background:var(--cream);border-bottom:1px solid var(--hairline);
   }
   .nav-links.open{display:flex}
-  .nav-links a{padding:12px clamp(20px,5vw,48px)}
+  .nav-links a{display:flex;align-items:center;min-height:44px;padding:12px clamp(20px,5vw,48px)}
   .about-photo{max-width:420px}
   .p-cat{grid-template-columns:1fr;gap:24px}
   .p-cat-label{position:static}
@@ -440,21 +451,28 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
   .brand-name{font-size:16px;max-width:108px}
   .brand-name small{display:none}
   .nav .btn{padding:8px 10px}
+  .about-grid>*{min-width:0}
+  .about-frame{transform:none}
+  .about-photo .polaroid{right:0}
+  .about-facts{display:grid;grid-template-columns:1fr 1fr;gap:22px 28px}
+  .about-facts .fact:last-child{grid-column:1/-1}
 }
 @media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
   .rv,.hero .ld,.hero-photo-wrap{opacity:1!important;transform:none!important;animation:none!important}
   .strip-track{animation:none}
-  .look-stage img{transform:none;transition:opacity .4s ease}
+  .look-panel{transform:none;transition:opacity .4s ease}
 }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- ============ header ============ -->
 <header>
   <div class="wrap nav">
     <a class="brand" href="#top" aria-label="Serenity Rose Studios — home">
-      <img class="brand-logo" src="assets/images/transparent.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="assets/images/transparent.png" width="160" height="160" alt="" aria-hidden="true">
       <span class="brand-name">Serenity Rose Studios<small>Manteca &middot; California</small></span>
     </a>
     <nav class="nav-links" id="nav-menu" aria-label="Main">
@@ -465,12 +483,13 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
       <a href="#visit">Visit</a>
     </nav>
     <a class="btn" href="#visit">Book Now</a>
-    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu"><span></span><span></span></button>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu"><span></span><span></span></button>
   </div>
 </header>
 
 <!-- ============ hero ============ -->
-<main id="top">
+<main id="main">
+<div id="top"></div>
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
@@ -484,7 +503,7 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
     </div>
     <div class="hero-photo-wrap">
       <div class="hero-frame">
-        <img class="cover" src="assets/images/hero-shampoo-service.webp" alt="Stylist shampooing a relaxed client in a warm private salon studio">
+        <img class="cover" src="assets/images/hero-shampoo-service.webp" width="1122" height="1402" decoding="async" fetchpriority="high" alt="Stylist shampooing a relaxed client in a warm private salon studio">
       </div>
     </div>
   </div>
@@ -503,10 +522,10 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
   <div class="wrap about-grid">
     <div class="about-photo rv">
       <div class="about-frame">
-        <img class="cover" src="assets/images/marissa-portrait.webp" alt="Portrait of Marissa, a warm Mexican hairstylist in her salon studio">
+        <img class="cover" src="assets/images/marissa-portrait.webp" width="759" height="1600" decoding="async" alt="Portrait of Marissa, a warm Mexican hairstylist in her salon studio">
       </div>
       <div class="polaroid">
-        <img class="cover" src="assets/images/studio-chair-polaroid.webp" alt="Dusty rose styling chair and arched mirror inside the studio">
+        <img class="cover" src="assets/images/studio-chair-polaroid.webp" width="1254" height="1254" decoding="async" alt="Dusty rose styling chair and arched mirror inside the studio">
       </div>
     </div>
     <div class="about-copy rv">
@@ -532,9 +551,9 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
       <h2>Meet the <em>stylists.</em></h2>
     </div>
     <div class="team-pin">
-    <div class="team-row rv" aria-label="Stylists at Serenity Rose Studios">
-      <a class="team-panel open" href="stylists/marissa.html">
-        <img loading="lazy" src="assets/images/stylist-marissa-portrait.jpg" alt="Marissa, owner and balayage specialist at Serenity Rose Studios">
+    <div class="team-row rv" role="list" aria-label="Stylists at Serenity Rose Studios">
+      <a class="team-panel open" role="listitem" href="stylists/marissa.html">
+        <img loading="lazy" decoding="async" width="900" height="1125" src="assets/images/stylist-marissa-portrait.jpg" alt="Marissa, owner and balayage specialist at Serenity Rose Studios">
         <span class="team-tab" aria-hidden="true"><span>Marissa</span></span>
         <div class="team-info">
           <h3>Marissa</h3>
@@ -542,8 +561,8 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
           <span class="more">Meet Marissa</span>
         </div>
       </a>
-      <a class="team-panel" href="stylists/jess.html">
-        <img loading="lazy" src="assets/images/stylist-jess-portrait.jpg" alt="Jess, blonde specialist at Serenity Rose Studios">
+      <a class="team-panel" role="listitem" href="stylists/jess.html">
+        <img loading="lazy" decoding="async" width="900" height="1125" src="assets/images/stylist-jess-portrait.jpg" alt="Jess, blonde specialist at Serenity Rose Studios">
         <span class="team-tab" aria-hidden="true"><span>Jess</span></span>
         <div class="team-info">
           <h3>Jess</h3>
@@ -551,8 +570,8 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
           <span class="more">Meet Jess</span>
         </div>
       </a>
-      <a class="team-panel" href="stylists/gricelda.html">
-        <img loading="lazy" src="assets/images/stylist-gricelda-portrait.jpg" alt="Gricelda, red and copper color specialist at Serenity Rose Studios">
+      <a class="team-panel" role="listitem" href="stylists/gricelda.html">
+        <img loading="lazy" decoding="async" width="900" height="1125" src="assets/images/stylist-gricelda-portrait.jpg" alt="Gricelda, red and copper color specialist at Serenity Rose Studios">
         <span class="team-tab" aria-hidden="true"><span>Gricelda</span></span>
         <div class="team-info">
           <h3>Gricelda</h3>
@@ -560,8 +579,8 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
           <span class="more">Meet Gricelda</span>
         </div>
       </a>
-      <a class="team-panel" href="stylists/nancy.html">
-        <img loading="lazy" src="assets/images/stylist-nancy-portrait.jpg" alt="Nancy, curl specialist at Serenity Rose Studios">
+      <a class="team-panel" role="listitem" href="stylists/nancy.html">
+        <img loading="lazy" decoding="async" width="900" height="1125" src="assets/images/stylist-nancy-portrait.jpg" alt="Nancy, curl specialist at Serenity Rose Studios">
         <span class="team-tab" aria-hidden="true"><span>Nancy</span></span>
         <div class="team-info">
           <h3>Nancy</h3>
@@ -569,8 +588,8 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
           <span class="more">Meet Nancy</span>
         </div>
       </a>
-      <a class="team-panel" href="stylists/lexi.html">
-        <img loading="lazy" src="assets/images/stylist-lexi-portrait.jpg" alt="Lexi, vivid and creative color specialist at Serenity Rose Studios">
+      <a class="team-panel" role="listitem" href="stylists/lexi.html">
+        <img loading="lazy" decoding="async" width="900" height="1125" src="assets/images/stylist-lexi-portrait.jpg" alt="Lexi, vivid and creative color specialist at Serenity Rose Studios">
         <span class="team-tab" aria-hidden="true"><span>Lexi</span></span>
         <div class="team-info">
           <h3>Lexi</h3>
@@ -591,45 +610,57 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
       <h2>Hair worth <em>turning around for.</em></h2>
     </div>
     <div class="look-grid">
-      <ol class="look-list rv">
-        <li><button type="button" class="look active" aria-current="true">
+      <ol class="look-list rv" role="tablist" aria-label="Featured hair looks">
+        <li><button type="button" class="look active" id="look-tab-1" role="tab" aria-selected="true" aria-controls="look-panel-1" tabindex="0">
           <span class="look-num">01</span>
           <span><span class="look-title">Lived-in Balayage</span>
           <span class="look-desc">Hand-painted brunette dimension that grows out soft and seamless.</span></span>
         </button></li>
-        <li><button type="button" class="look">
+        <li><button type="button" class="look" id="look-tab-2" role="tab" aria-selected="false" aria-controls="look-panel-2" tabindex="-1">
           <span class="look-num">02</span>
           <span><span class="look-title">Natural Curls</span>
           <span class="look-desc">A hydration cut that lets shoulder-length curls do their thing.</span></span>
         </button></li>
-        <li><button type="button" class="look">
+        <li><button type="button" class="look" id="look-tab-3" role="tab" aria-selected="false" aria-controls="look-panel-3" tabindex="-1">
           <span class="look-num">03</span>
           <span><span class="look-title">Dimensional Blonde</span>
           <span class="look-desc">Sunlit brightness with movement — warm, soft, never stripy.</span></span>
         </button></li>
-        <li><button type="button" class="look">
+        <li><button type="button" class="look" id="look-tab-4" role="tab" aria-selected="false" aria-controls="look-panel-4" tabindex="-1">
           <span class="look-num">04</span>
           <span><span class="look-title">The Blowout</span>
           <span class="look-desc">Round-brush volume at the station, glossy and full of bounce.</span></span>
         </button></li>
-        <li><button type="button" class="look">
+        <li><button type="button" class="look" id="look-tab-5" role="tab" aria-selected="false" aria-controls="look-panel-5" tabindex="-1">
           <span class="look-num">05</span>
           <span><span class="look-title">Occasion Updo</span>
           <span class="look-desc">Soft, romantic styling with fresh flowers for the big day.</span></span>
         </button></li>
-        <li><button type="button" class="look">
+        <li><button type="button" class="look" id="look-tab-6" role="tab" aria-selected="false" aria-controls="look-panel-6" tabindex="-1">
           <span class="look-num">06</span>
           <span><span class="look-title">Brunette Gloss</span>
           <span class="look-desc">Rich, mirror-shine gloss with easy face-framing layers.</span></span>
         </button></li>
       </ol>
       <div class="look-stage rv">
-        <img class="active" loading="lazy" src="assets/images/gallery-lived-in-balayage.webp" alt="Lived-in brunette balayage with soft natural waves">
-        <img loading="lazy" src="assets/images/gallery-natural-curls.webp" alt="Natural shoulder-length curls after a hydration cut and style">
-        <img loading="lazy" src="assets/images/gallery-dimensional-blonde.webp" alt="Dimensional blonde cut and loose waves in warm salon light">
-        <img loading="lazy" src="assets/images/gallery-blowout-process.webp" alt="Round-brush blowout in progress at the styling station">
-        <img loading="lazy" src="assets/images/gallery-occasion-updo.webp" alt="Soft romantic occasion updo with small natural flowers">
-        <img loading="lazy" src="assets/images/gallery-brunette-gloss.webp" alt="Rich brunette gloss and face-framing layers on a relaxed client">
+        <div class="look-panel active" id="look-panel-1" role="tabpanel" aria-labelledby="look-tab-1">
+          <img loading="lazy" decoding="async" width="1122" height="1402" src="assets/images/gallery-lived-in-balayage.webp" alt="Lived-in brunette balayage with soft natural waves">
+        </div>
+        <div class="look-panel" id="look-panel-2" role="tabpanel" aria-labelledby="look-tab-2" hidden>
+          <img loading="lazy" decoding="async" width="1254" height="1254" src="assets/images/gallery-natural-curls.webp" alt="Natural shoulder-length curls after a hydration cut and style">
+        </div>
+        <div class="look-panel" id="look-panel-3" role="tabpanel" aria-labelledby="look-tab-3" hidden>
+          <img loading="lazy" decoding="async" width="1086" height="1448" src="assets/images/gallery-dimensional-blonde.webp" alt="Dimensional blonde cut and loose waves in warm salon light">
+        </div>
+        <div class="look-panel" id="look-panel-4" role="tabpanel" aria-labelledby="look-tab-4" hidden>
+          <img loading="lazy" decoding="async" width="1402" height="1122" src="assets/images/gallery-blowout-process.webp" alt="Round-brush blowout in progress at the styling station">
+        </div>
+        <div class="look-panel" id="look-panel-5" role="tabpanel" aria-labelledby="look-tab-5" hidden>
+          <img loading="lazy" decoding="async" width="1122" height="1402" src="assets/images/gallery-occasion-updo.webp" alt="Soft romantic occasion updo with small natural flowers">
+        </div>
+        <div class="look-panel" id="look-panel-6" role="tabpanel" aria-labelledby="look-tab-6" hidden>
+          <img loading="lazy" decoding="async" width="1086" height="1448" src="assets/images/gallery-brunette-gloss.webp" alt="Rich brunette gloss and face-framing layers on a relaxed client">
+        </div>
         <span class="look-count"><em>01</em>&thinsp;/&thinsp;06</span>
       </div>
     </div>
@@ -779,9 +810,9 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
       <h2>Save your seat <em>in the chair.</em></h2>
       <p class="sub">Appointments are one-on-one and fill up a few weeks out — reach out early for occasion styling. New guests always welcome.</p>
       <div class="visit-details">
-        <div class="vd"><h4>Studio</h4><p><a href="https://www.google.com/maps/search/?api=1&amp;query=105%20N%20Lincoln%20Ave%2C%20Manteca%2C%20CA%2095336">105 N Lincoln Ave</a><small>Manteca, CA 95336</small></p></div>
+        <div class="vd"><h3>Studio</h3><p><a href="https://www.google.com/maps/search/?api=1&amp;query=105%20N%20Lincoln%20Ave%2C%20Manteca%2C%20CA%2095336">105 N Lincoln Ave</a><small>Manteca, CA 95336</small></p></div>
         <div class="vd">
-          <h4>Hours</h4>
+          <h3>Hours</h3>
           <ul class="hours-list" aria-label="Studio hours">
             <li><span>Monday</span><span>9 AM-6 PM</span></li>
             <li><span>Tuesday</span><span>9 AM-6 PM</span></li>
@@ -792,9 +823,9 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
             <li><span>Sunday</span><span>Closed</span></li>
           </ul>
         </div>
-        <div class="vd"><h4>Call or text</h4><p><a href="tel:+12097178044">(209) 717-8044</a><small>Texts answered fastest</small></p></div>
+        <div class="vd"><h3>Call or text</h3><p><a href="tel:+12097178044">(209) 717-8044</a><small>Texts answered fastest</small></p></div>
         <div class="vd">
-          <h4>Follow</h4>
+          <h3>Follow</h3>
           <p>@serenityrosestudios<small>Serenity Rose Studios</small></p>
           <div class="social-links" aria-label="Social links">
             <a href="https://www.instagram.com/serenityrosestudios">Instagram</a>
@@ -807,7 +838,7 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
     </div>
     <figure class="studio-sign rv">
       <div class="sign-frame">
-        <img loading="lazy" src="assets/images/serenity-rose-sign.jpg" alt="Handmade wooden Serenity Rose Studios sign with brass script lettering, roses, and shears, mounted on a brick wall">
+        <img loading="lazy" decoding="async" width="1504" height="1046" src="assets/images/serenity-rose-sign.jpg" alt="Handmade wooden Serenity Rose Studios sign with brass script lettering, roses, and shears, mounted on a brick wall">
       </div>
       <figcaption>When you spot the sign on the brick, you're in the right place.</figcaption>
     </figure>
@@ -819,7 +850,7 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
 <footer>
   <div class="wrap foot">
     <div class="foot-brand">
-      <img class="brand-logo" src="assets/images/transparent.png" alt="" aria-hidden="true">
+      <img class="brand-logo" src="assets/images/transparent.png" width="160" height="160" alt="" aria-hidden="true">
       Serenity Rose Studios
     </div>
     <nav aria-label="Footer">
@@ -833,34 +864,46 @@ footer{padding:62px 0 48px;border-top:1px solid var(--hairline)}
   </div>
 </footer>
 
+<script src="assets/site.js" defer></script>
 <script>
-const io = new IntersectionObserver(entries => {
-  for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-}, { threshold: 0.12 });
-document.querySelectorAll('.rv').forEach(el => io.observe(el));
-
 /* gallery lookbook */
 const looks = [...document.querySelectorAll('.look')];
-const shots = [...document.querySelectorAll('.look-stage img')];
+const shots = [...document.querySelectorAll('.look-panel')];
 const countEl = document.querySelector('.look-count em');
 const gallery = document.querySelector('.gallery');
 const noMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-let cur = 0, timer = null;
+let cur = 0;
 
-function setLook(i) {
-  if (i === cur && looks[i].classList.contains('active')) return;
+function setLook(i, { focus = false } = {}) {
   cur = i;
-  looks.forEach((b, j) => { b.classList.toggle('active', j === i); b.setAttribute('aria-current', j === i); });
-  shots.forEach((img, j) => img.classList.toggle('active', j === i));
+  looks.forEach((button, j) => {
+    const active = j === i;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-selected', String(active));
+    button.tabIndex = active ? 0 : -1;
+  });
+  shots.forEach((panel, j) => {
+    const active = j === i;
+    panel.classList.toggle('active', active);
+    panel.hidden = !active;
+  });
   countEl.textContent = String(i + 1).padStart(2, '0');
+  if (focus) looks[i].focus();
 }
-function play() { if (!noMotion && !timer) timer = setInterval(() => setLook((cur + 1) % looks.length), 4500); }
-function stop() { clearInterval(timer); timer = null; }
 
 looks.forEach((b, i) => {
   b.addEventListener('click', () => setLook(i));
-  b.addEventListener('mouseenter', () => setLook(i));
-  b.addEventListener('focus', () => setLook(i));
+  b.addEventListener('keydown', event => {
+    const keys = ['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', 'Home', 'End'];
+    if (!keys.includes(event.key)) return;
+    event.preventDefault();
+    let next = i;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (i - 1 + looks.length) % looks.length;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (i + 1) % looks.length;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = looks.length - 1;
+    setLook(next, { focus: true });
+  });
 });
 /* stylists expanding panels */
 const panels = [...document.querySelectorAll('.team-panel')];
@@ -870,17 +913,6 @@ function setPanel(i) {
 panels.forEach((p, i) => {
   p.addEventListener('mouseenter', () => setPanel(i));
   p.addEventListener('focus', () => setPanel(i));
-});
-
-/* mobile nav */
-const navToggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
-navToggle.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('open');
-  navToggle.setAttribute('aria-expanded', open);
-});
-navLinks.addEventListener('click', e => {
-  if (e.target.tagName === 'A') { navLinks.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
 });
 
 /* mobile: pin the accordion and open each stylist as the visitor scrolls
@@ -901,7 +933,7 @@ function onTeamScroll() { if (!pTicking) { pTicking = true; requestAnimationFram
 
 function teamMode() {
   window.removeEventListener('scroll', onTeamScroll);
-  if (pinInView && teamMobile.matches) { window.addEventListener('scroll', onTeamScroll, { passive: true }); teamSync(); }
+  if (pinInView && teamMobile.matches && !noMotion) { window.addEventListener('scroll', onTeamScroll, { passive: true }); teamSync(); }
 }
 
 teamMobile.addEventListener('change', teamMode);
@@ -910,14 +942,14 @@ new IntersectionObserver(es => {
   teamMode();
 }, { threshold: 0.05 }).observe(pin);
 
-/* mobile: advance the lookbook as the section scrolls through the viewport
-   (desktop keeps hover + auto-play) */
+/* mobile: advance the lookbook as the section scrolls through the viewport */
 const isMobile = matchMedia('(max-width: 960px)');
 const stage = document.querySelector('.look-stage');
 let inView = false, ticking = false;
 
 function scrollSync() {
   ticking = false;
+  if (noMotion || gallery.contains(document.activeElement)) return;
   const vh = window.innerHeight || document.documentElement.clientHeight;
   const stageBottom = stage.getBoundingClientRect().bottom;
   /* activate a look once its row scrolls into the zone under the pinned image */
@@ -932,14 +964,10 @@ function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(scro
 
 function syncMode() {
   window.removeEventListener('scroll', onScroll);
-  stop();
-  if (!inView) return;
+  if (!inView || noMotion) return;
   if (isMobile.matches) { window.addEventListener('scroll', onScroll, { passive: true }); scrollSync(); }
-  else play();
 }
 
-gallery.addEventListener('mouseenter', () => { if (!isMobile.matches) stop(); });
-gallery.addEventListener('mouseleave', () => { if (!isMobile.matches && inView) play(); });
 isMobile.addEventListener('change', syncMode);
 new IntersectionObserver(es => {
   for (const e of es) { inView = e.isIntersecting; }
