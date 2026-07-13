@@ -161,7 +161,7 @@ function validateIntegrity() {
 
   const home = read('index.html');
   const profileHtml = pages.filter(page => page.file !== 'index.html').map(page => read(page.file)).join('\n');
-  check(countMatches(home, /Placeholder review/g) === 3, 'deferred content changed: expected three placeholder reviews');
+  check(countMatches(home, /Placeholder review/g) === 0, 'placeholder reviews should be replaced with real testimonials');
   check(countMatches(profileHtml, /\+1209555\d{4}/g) === 8, 'deferred content changed: expected eight 555 telephone links');
   check(countMatches(profileHtml, /555-\d{4}/g) === 4, 'deferred content changed: expected four visible 555 numbers');
 }
