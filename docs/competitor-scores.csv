@@ -1,0 +1,16 @@
+rank,salon,town,platform,own_domain,online_booking,booking_tool,pricing_published,design_20,content_15,booking_20,seo_15,mobile_10,performance_10,trust_10,total_100,evidence_basis,yelp_rating,yelp_reviews
+1,Luster Color Studio,Modesto,WordPress own domain,yes,yes,Vagaro,not verified,14,11,16,14,8,6,7,76,search index (±5),4.5,59
+2,Serenity Rose Studios,Manteca,Custom static (GitHub Pages),no (github.io subdomain),no,phone/text only,yes full menu,18,12,12,10,9,9,3,73,full source audit (high confidence),n/a,n/a
+3,Divine Salon & Spa,Ripon,Own domain (divine209.com) + Vagaro,yes,yes,Vagaro 24/7,partial,14,11,15,11,7,6,7,71,search index (±5),unverified,39
+4,Sadie's Salon,Manteca,GlossGenius subdomain,no,yes,GlossGenius native,partial (in booking flow),10,10,17,8,8,7,6,66,search index (±5),unverified,78
+5,Rise Collective,Ripon,Squarespace own domain,yes,no,email only,not verified,15,10,8,10,8,6,5,62,search index (±5),sparse,low
+6,Serenity Salon & Spa,Manteca,Own domain (serenity-salonspa.com),yes,claimed unconfirmed,unknown,partial,12,10,12,11,6,5,6,62,search index (±5),unverified,unverified
+7,The Cutting Room Salon,Tracy,Own domain 2-page site,yes,partial,per-stylist Vagaro,no,10,7,10,10,7,7,8,59,search index (±5),4.6,133
+8,Klassy Kuts,Manteca,Legacy static builder own domain,yes,yes,Setmore (off-site),yes,6,11,13,11,4,6,4,55,search index (±5),4.5,83
+9,Gloss,Ripon,Vagaro page only,no,yes,Vagaro native,likely,8,8,16,5,8,6,4,55,search index + platform inference (±5),n/a,n/a
+10,Studio 1507,Manteca,Square Online subdomain,no,yes,Square Appointments native,no,8,6,16,6,8,7,3,54,search index (±5),unverified,low
+11,K Amour Lash & Hair,Lathrop,Free Wix + GlossGenius subdomains,no,yes,GlossGenius,likely,7,8,15,4,8,5,6,53,search index + platform inference (±5),5.0,8
+12,Haven,Manteca,Vagaro listing only,no,yes,Vagaro + split Square,in-platform,5,8,15,5,7,5,6,51,search index (±5),unverified,29
+13,Tango Hair Salon,Manteca,No website (Fresha/Yelp/Facebook),no,yes,Fresha,no,5,5,10,6,6,5,6,43,search index (±5),4.5,40
+14,Rust Salon,Manteca,No website (Instagram/Facebook/Yelp),no,no,phone/DM/email,no,6,4,5,7,6,5,8,41,search index (±5),4.7,53
+15,To Dye For Hair Studio,Modesto,Parked/dead domain,parked,fragmented,Fresha/Vagaro per stylist,band only,3,6,10,4,5,3,9,40,search index (±5),4.5,284
