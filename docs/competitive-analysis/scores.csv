@@ -1,0 +1,10 @@
+rank,salon,town,url,platform,online_booking,pricing_published,design_15,brand_10,content_15,booking_15,local_seo_15,mobile_perf_10,trust_10,technical_10,total_100
+1,Mood on 10th,Tracy,https://moodon10thsalon.com/,Custom/professional multi-page,Yes (dedicated page),Partial (level system),12,9,10,13,14,7,9,8,82
+2,Serenity Rose Studios,Manteca,https://jabach811.github.io/marissa/,Hand-coded static (GitHub Pages),No (phone/text only),Yes (full price list),14,9,13,8,9,9,6,9,77
+3,The Cutting Room Salon,Tracy,https://thecuttingroomsalontracy.com/,Unknown small builder,Fragmented (per-stylist Vagaro),No,8,6,8,9,9,6,7,7,60
+4,Rise Collective,Ripon,https://www.risecollectiveripon.com,Squarespace,No (email inquiry),No,10,7,8,6,9,7,6,6,59
+5,Klassy Kuts,Manteca,https://www.klassy-kuts.com/,Legacy static HTML,Yes (Setmore),Yes,6,4,11,10,10,3,4,5,53
+6,Studio 1507,Manteca,https://studio1507.square.site/,Square Online (square.site),Yes (Square Appointments),No,8,4,5,11,5,7,4,7,51
+7,Friend's Salon & Beauty Supply,Ripon,https://www.friendssalonripon.com/,Legacy builder,No (phone only),No,6,5,7,5,10,4,5,6,48
+8,Chic Hair Lounge,Manteca,https://chichairlounge.com/,WordPress (unconfigured),No (call to book),No,7,3,5,5,4,5,5,5,39
+,Rust Salon,Manteca,https://www.instagram.com/rustsalon209/,No website (Instagram-only),Via DM/phone,No,,,,,,,,,N/A
