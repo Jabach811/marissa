@@ -254,8 +254,12 @@ section{padding:clamp(72px,11vh,130px) 0}
   .team-panel,.team-panel img,.team-info,.team-tab{transition:none}
 }
 @media(max-width:760px) and (prefers-reduced-motion:reduce){
+  /* no scroll pinning here, so the row is laid out normally and the panels need
+     explicit heights: tapping one snaps it open instead of animating */
   .team-pin{height:auto}
   .team-row{position:static;top:auto;height:auto}
+  .team-panel{flex:none;height:88px}
+  .team-panel.open{flex:none;height:min(66vh,520px)}
 }
 
 /* ---------- gallery (lookbook) ---------- */
@@ -907,12 +911,39 @@ looks.forEach((b, i) => {
 });
 /* stylists expanding panels */
 const panels = [...document.querySelectorAll('.team-panel')];
+/* touch devices open a panel with the first tap; the link only follows once the
+   panel has finished expanding (see EXPAND_MS, matching the .85s flex transition) */
+const tapFirst = matchMedia('(hover: none)');
+const EXPAND_MS = 900;
+let openPanel = panels.findIndex(p => p.classList.contains('open'));
+let expandTimer = 0;
+let tapHold = null, tapAt = 0;
+if (panels[openPanel]) panels[openPanel].classList.add('expanded');
+
 function setPanel(i) {
-  panels.forEach((p, j) => p.classList.toggle('open', j === i));
+  if (i === openPanel || !panels[i]) return;
+  openPanel = i;
+  clearTimeout(expandTimer);
+  panels.forEach((p, j) => {
+    p.classList.toggle('open', j === i);
+    if (j !== i) p.classList.remove('expanded');
+  });
+  if (noMotion) panels[i].classList.add('expanded');
+  else expandTimer = setTimeout(() => panels[i].classList.add('expanded'), EXPAND_MS);
 }
+
 panels.forEach((p, i) => {
-  p.addEventListener('mouseenter', () => setPanel(i));
-  p.addEventListener('focus', () => setPanel(i));
+  /* touch browsers fire a synthetic mouseenter/focus before click, so on those
+     devices the tap itself — not the fake hover — drives the panel */
+  p.addEventListener('mouseenter', () => { if (!tapFirst.matches) setPanel(i); });
+  p.addEventListener('focus', () => { if (!tapFirst.matches) setPanel(i); });
+  p.addEventListener('click', event => {
+    if (!tapFirst.matches || p.classList.contains('expanded')) return;
+    event.preventDefault();
+    tapHold = window.scrollY;
+    tapAt = performance.now();
+    setPanel(i);
+  });
 });
 
 /* mobile: pin the accordion and open each stylist as the visitor scrolls
@@ -924,6 +955,14 @@ let pinInView = false, pTicking = false;
 
 function teamSync() {
   pTicking = false;
+  /* a tapped-open panel stays open until the visitor scrolls away from it, so
+     neither a stray pixel of scroll nor momentum still coasting from before the
+     tap can snap the accordion back before the second tap */
+  if (tapHold !== null) {
+    if (performance.now() - tapAt < 700) { tapHold = window.scrollY; return; }
+    if (Math.abs(window.scrollY - tapHold) < 48) return;
+    tapHold = null;
+  }
   const pr = pin.getBoundingClientRect();
   const travel = pr.height - row.offsetHeight;
   const p = travel > 0 ? Math.min(1, Math.max(0, (88 - pr.top) / travel)) : 0;

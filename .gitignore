@@ -1,2 +1,16 @@
 .claude/
 .worktrees/
+
+# Local working files — never published to GitHub
+.openai/
+CLAUDE.md
+site/
+dist/
+node_modules/
+
+# Client pitch documents and source photos
+Serenity-Rose-Pitch.html
+Serenity-Rose-Pitch.pdf
+site-handout.html
+qr-rebuild.svg
+/*.jpg
